@@ -1,156 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
+here<!DOCTYPE html>
+<html lang="ar">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For My Love Erica ❤️</title>
-
-<style>
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Georgia', serif;
-    background: black;
-    color: white;
-    text-align: center;
-    overflow-x: hidden;
-}
-
-.container {
-    padding: 40px 20px;
-    max-width: 800px;
-    margin: auto;
-}
-
-h1 {
-    font-size: 38px;
-    margin-bottom: 20px;
-}
-
-p {
-    font-size: 20px;
-    line-height: 1.8;
-}
-
-/* Slider */
-.slider {
-    position: relative;
-    max-width: 300px;
-    margin: 30px auto;
-}
-
-.slider img {
-    width: 100%;
-    border-radius: 20px;
-    display: none;
-}
-
-.slider img.active {
-    display: block;
-}
-
-/* Floating Hearts */
-.heart {
-    position: fixed;
-    bottom: -10px;
-    font-size: 20px;
-    animation: float 5s linear infinite;
-}
-
-@keyframes float {
-    0% {transform: translateY(0); opacity: 1;}
-    100% {transform: translateY(-100vh); opacity: 0;}
-}
-
-button {
-    padding: 10px 25px;
-    border-radius: 30px;
-    border: none;
-    background: white;
-    color: black;
-    font-size: 18px;
-    cursor: pointer;
-    margin-top: 20px;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Love Erica ❤️</title>
+    <style>
+        body { margin: 0; padding: 0; font-family: 'Georgia', serif; background: black; color: white; text-align: center; overflow-x: hidden; }
+        .container { padding: 40px 20px; max-width: 800px; margin: auto; }
+        img { width: 100%; border-radius: 20px; display: none; box-shadow: 0 0 20px rgba(255,192,203,0.5); }
+        img.active { display: block; }
+        .heart { position: fixed; bottom: -10px; font-size: 20px; animation: float 5s linear infinite; }
+        @keyframes float { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(-100vh); opacity: 0; } }
+        button { padding: 15px 30px; border-radius: 50px; border: none; background: white; color: black; font-weight: bold; cursor: pointer; margin-top: 20px; }
+    </style>
 </head>
-
 <body>
 
 <div class="container">
     <h1>Happy Valentine's Day My Love ❤️</h1>
-
+    
     <div class="slider">
-        <img src="1.jpg" class="active">
-        <img src="2.jpg">
-        <img src="3.jpg">
-        <img src="4.jpg">
+        <img src="IMG_20260213_204849_529.jpg" class="active">
+        <img src="IMG_20260213_204845_302.jpg">
+        <img src="IMG_20240928_164811_694.jpg">
+        <img src="IMG_20240928_170539_483.jpg">
     </div>
 
-    <p>
-        To my beautiful Erica de Guzman,<br><br>
-
-        Since 22/02/2024, my life has never been the same.  
-        You came into my world like a quiet miracle.  
-        Your smile feels like home.  
-        Your voice is my favorite sound.  
-
-        Thank you for loving me,  
-        thank you for staying,  
-        thank you for choosing me every single day.  
-
-        No matter the distance,  
-        my heart beats only for you.  
-
-        Forever yours,<br>
-        Mohammed Zaid 🤍
-    </p>
+    <p>To my beautiful Erica de Guzman,<br><br>
+    Since 22/02/2024, my life has never been the same.<br>
+    You came into my world like a quiet miracle.</p>
 
     <h3 id="counter"></h3>
 
-    <button onclick="playMusic()">Play Our Song 🎵</button>
+    <button onclick="playMusic()">Play Our Song 🎵🤍</button>
 </div>
 
-<audio id="music" src="cinnamon.mp3"></audio>
+<audio id="music" src="Lana Del Rey - Cinnamon Girl (Lyrics)(MP3_160K).mp3"></audio>
 
 <script>
-// Image Slider
-let index = 0;
-const slides = document.querySelectorAll(".slider img");
+    // سلايدر الصور
+    let index = 0;
+    const slides = document.querySelectorAll('.slider img');
+    setInterval(() => {
+        slides[index].classList.remove('active');
+        index = (index + 1) % slides.length;
+        slides[index].classList.add('active');
+    }, 3000);
 
-setInterval(() => {
-    slides[index].classList.remove("active");
-    index = (index + 1) % slides.length;
-    slides[index].classList.add("active");
-}, 3000);
+    // عداد الحب
+    const startDate = new Date("2024-02-22");
+    setInterval(() => {
+        const today = new Date();
+        const diff = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+        document.getElementById('counter').innerText = "We have loved each other for " + diff + " days ❤️";
+    }, 1000);
 
-// Love Counter
-const startDate = new Date("2024-02-22");
-const today = new Date();
-const diffTime = today - startDate;
-const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-document.getElementById("counter").innerText = 
-    "We have loved each other for " + days + " days ❤️";
+    // قلوب متطايرة
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.innerText = Math.random() > 0.5 ? "❤️" : "🤍";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = Math.random() * 20 + 15 + "px";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+    }
+    setInterval(createHeart, 300);
 
-// Hearts Animation
-function createHeart() {
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerText = Math.random() > 0.5 ? "❤️" : "🤍";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = Math.random() * 20 + 15 + "px";
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-        heart.remove();
-    }, 5000);
-}
-setInterval(createHeart, 300);
-
-// Music
-function playMusic() {
-    document.getElementById("music").play();
-}
+    function playMusic() { document.getElementById('music').play(); }
 </script>
 
 </body>
